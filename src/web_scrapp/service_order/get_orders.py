@@ -10,7 +10,12 @@ class ServiceOrder:
         self.driver = webdriver.Chrome()
         # self.driver.minimize_window()
 
+    def get_password(self):
+        secret_manager = sct.Secret()
+        self.username, self.password = secret_manager.teams_manager()
+
     def main(self):
+        self.get_password()
         self.script()
         return self.orders
 
@@ -33,11 +38,8 @@ class ServiceOrder:
         password = self.driver.find_element(by=By.NAME, value="password")
         submit_button = self.driver.find_element(by=By.TAG_NAME, value="button")
 
-        secret = sct.Secret()
-        secret_user, secret_pass = secret.extract_credentials()
-
-        username.send_keys(secret_user)
-        password.send_keys(secret_pass)
+        username.send_keys(self.username)
+        password.send_keys(self.password)
 
         submit_button.click()
 
