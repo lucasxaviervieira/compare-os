@@ -1,18 +1,22 @@
-from src.web_scrapp.service_order import get_orders as go
-from src.web_scrapp.teams import send_message as mt
-from src import send_email as me
+from src.web_scrapp.service_order.get_orders import ServiceOrder
+from src.web_scrapp.teams.send_message import MessageTeams
+from src.send_email import MessageEmail
 
 
 class App:
     def __init__(self):
         self.orders = 0
+        self.teams_recipient = "lucas.vieira"
+        self.email_recipient = self.teams_recipient + "@aguasdejoinville.com.br"
 
     def main(self):
+        # Quantifica as ordens de chamado
         self.order()
+        # Envia as mensagens
         self.send_message()
 
     def order(self):
-        get_orders = go.ServiceOrder()
+        get_orders = ServiceOrder()
         self.orders = get_orders.main()
 
     def send_message(self):
@@ -20,13 +24,11 @@ class App:
         self.message_email()
 
     def message_teams(self):
-        teams_provisory_recipient = "osvaldo.silva"
-        send_message = mt.MessageTeams(teams_provisory_recipient, self.orders)
+        send_message = MessageTeams(self.teams_recipient, self.orders)
         send_message.script()
 
     def message_email(self):
-        email_provisory_recipient = "lucas.vieira@aguasdejoinville.com.br"
-        send_message = me.MessageEmail(email_provisory_recipient, self.orders)
+        send_message = MessageEmail(self.email_recipient, self.orders)
         send_message.main()
 
 

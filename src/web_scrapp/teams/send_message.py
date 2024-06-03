@@ -50,7 +50,6 @@ class MessageTeams:
         self.tear_down()
 
     def login(self):
-
         email = self.username + "@aguasdejoinville.com.br"
         # Seleciona o elemento do formulário que se refere ao 'username'
         username = self.driver.find_element(by=By.XPATH, value='//*[@id="i0116"]')
@@ -115,8 +114,9 @@ class MessageTeams:
         # Digita a mensagem
         ActionChains(self.driver).send_keys(message).perform()
 
-        time.sleep(2)
+        time.sleep(5)
         self.press_enter()
+        time.sleep(2)
 
     def press_enter(self):
         ActionChains(self.driver).key_down(Keys.ENTER).key_up(Keys.ENTER).perform()
@@ -128,6 +128,6 @@ class MessageTeams:
     def tear_down(self):
         if self.driver != None:
             # Tempo de espera destinado ao código anterior ser finalizado
-            time.sleep(0.5)
+            time.sleep(2)
             self.driver.close()
             self.driver.quit()

@@ -8,7 +8,6 @@ class ServiceOrder:
     def __init__(self):
         self.orders = 0
         self.driver = webdriver.Chrome()
-        # self.driver.minimize_window()
 
     def get_password(self):
         secret_manager = sct.Secret()
