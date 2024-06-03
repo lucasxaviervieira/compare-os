@@ -24,7 +24,7 @@ pdm run main.py
 
 ## Configuração de Senha
 
-Crie um arquivo 'secret.json', na raíz ` .` do diretório onde o projeto está, com o seguinte formato:
+Crie um arquivo 'secret.json', na raíz `.` do diretório onde o projeto está, com o seguinte formato:
 
 ```
 [
